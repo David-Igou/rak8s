@@ -1,3 +1,5 @@
+## Forked by David Igou - Effort to add automated deployment of glusterfs-kubernetes for ARM
+
 # rak8s (pronounced rackets - /ˈrækɪts/)
 
 Stand up a Raspberry Pi based Kubernetes cluster with Ansible
