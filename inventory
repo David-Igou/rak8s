@@ -5,3 +5,8 @@ igou-k8s-worker3 ansible_host=192.168.1.234 ansible_user=igou
 
 [master]
 igou-k8s-master ansible_host=192.168.1.231 ansible_user=igou
+
+[worker]
+igou-k8s-worker1 ansible_host=192.168.1.232 ansible_user=igou
+igou-k8s-worker2 ansible_host=192.168.1.233 ansible_user=igou
+igou-k8s-worker3 ansible_host=192.168.1.234 ansible_user=igou
