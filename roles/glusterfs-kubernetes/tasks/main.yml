@@ -1,0 +1,34 @@
+---
+# task file for glusterfs-kubernetes (cns/ocs? name changes every month)
+
+# Pre-reqs. Currently testing deployments manually and will add automation later
+- name: Install packages
+  apt:
+    name: {{ item }}
+    state: latest
+  with_items:
+    - glusterfs-client
+    - iptables-persistent
+
+# I should make this something idempotent later.
+- name: copy over rules
+  copy:
+    src: files/rules.v4
+    dest: /etc/rules.v4
+
+- name: load rules
+  shell: netfilter-persistent reload
+
+- name: load kernel modules
+  shell: modprobe {{ item }}
+  with_items:
+    - dm_snapshot
+    - dm_mirror
+    - dm_thin_pool
+
+- name: load modules at boot
+  shell: echo {{ item }} > /etc/modules-load.d/{{ item }}.conf
+  with_items:
+    - dm_snapshot
+    - dm_mirror
+    - dm_thin_pool
