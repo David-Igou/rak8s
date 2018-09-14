@@ -32,3 +32,15 @@
     - dm_snapshot
     - dm_mirror
     - dm_thin_pool
+
+#TODO: Add a way to parse topology.json and clean the filesystems of blocks before deployments
+#TODO add check for topology.json
+
+- name: copy over gluster-kubernetes deployment files
+  synchronize:
+    src: files/deploy/
+    dest: /tmp/deploy/
+
+- name: deploy glusterfs-kubernetes
+  shell: /tmp/gk-deploy -gvy topology.json
+  ignore_errors: true #I'm probably going to need with_items
